@@ -15,7 +15,7 @@ import java.awt.*;
 
 String images_dir = "images"; //load .jpg images from directory (within current sketch folder).
 String faces_dir = "faces"; //save faces to directory (within current sketch folder).
-String data_dir = "data"; //save data about the faces
+String data_dir = "data"; //save data about the faces here
 
 void setup() {
   JSONObject all_face_data = new JSONObject();
@@ -49,6 +49,6 @@ void setup() {
       all_face_data.setJSONArray(image_names[i], image_faces);
     }
   }
-  saveJSONObject(all_face_data, "data/all_face_data.json");
+  saveJSONObject(all_face_data, data_dir+"/"+"all_face_data.json");
 }
 
