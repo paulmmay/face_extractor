@@ -13,8 +13,8 @@ import gab.opencv.*;
 import processing.video.*;
 import java.awt.*;
 
-String images_dir = "images";
-String faces_dir = "faces";
+String images_dir = "images"; //load .jpg images from directory (within current sketch folder).
+String faces_dir = "faces"; //save faces to directory (within current sketch folder).
 
 void setup() {
   File images_path = new File(sketchPath+"/"+images_dir);
