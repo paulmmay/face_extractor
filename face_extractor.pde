@@ -1,45 +1,27 @@
-//for all the images in the directory
+
 
 import gab.opencv.*;
 import processing.video.*;
 import java.awt.*;
 
+
 void setup() {
-  //load an image
-  OpenCV opencv = new OpenCV(this, "../images/1.1330011.1363625255.jpg");
-  PImage original = loadImage("../images/1.1330011.1363625255.jpg");
-  size(opencv.width, opencv.height);
-
-  opencv.loadCascade(OpenCV.CASCADE_FRONTALFACE); 
-  //  image(opencv.getOutput(), 0, 0);
-  image(original, 0, 0);
-  //  noFill();
-  fill(#fbe646);
-  noStroke();
-  //  stroke(0, 255, 0);
-  //  strokeWeight(3);
-  //look for faces
-  Rectangle[] faces = opencv.detect();
-  println(faces.length);
-
-  for (int i = 0; i < faces.length; i++) {
-//    println(faces[i].x + "," + faces[i].y);
-//    ellipse(faces[i].x+faces[i].width/2, faces[i].y+faces[i].height/2, 10, 10);
-//    rect(faces[i].x, faces[i].y, faces[i].width, faces[i].height);
+  File images_dir = new File(sketchPath+"/images");
+  String image_names[] = images_dir.list();
+  for (int i=0;i<image_names.length;i++) {
+    println(images_dir+"/"+image_names[i]);
+    String extension = image_names[i].substring(image_names[i].length()-4, image_names[i].length());
+    if (extension.equals(".jpg")) {
+      OpenCV opencv = new OpenCV(this, images_dir+"/"+image_names[i]);
+      PImage original = loadImage(images_dir+"/"+image_names[i]);
+      opencv.loadCascade(OpenCV.CASCADE_FRONTALFACE);
+      Rectangle[] faces = opencv.detect();
+      for (int j = 0; j < faces.length; j++) {
+        PImage new_image = original.get(faces[j].x, faces[j].y, faces[j].width, faces[j].height);
+        //append a suffix for every face
+        //save each face to a new directory with the same filename as the input file
+        new_image.save("faces/"+image_names[i].substring(0, image_names[i].length()-4)+"."+str(j)+".jpg");
+      }
+    }
   }
 }
-
-
-
-
-
-
-
-//save each face to a new directory with the same filename as the input file
-//append a suffix for every face
-
-//load metadata about the image from a database
-
-
-//save a html snippet back into the database, or to a text file
-
