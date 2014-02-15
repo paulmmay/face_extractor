@@ -32,6 +32,8 @@ void setup() {
         //append a suffix for every face
         //save each face to a new directory with the same filename as the input file
         new_image.save(faces_dir+"/"+image_names[i].substring(0, image_names[i].length()-4)+"."+str(j)+".jpg");
+        
+        //create a snippet of html and append it to a text file
       }
     }
   }
