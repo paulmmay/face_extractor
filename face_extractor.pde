@@ -23,7 +23,6 @@ void setup() {
   File images_path = new File(sketchPath+"/"+images_dir);
   String image_names[] = images_path.list();
   for (int i=0;i<image_names.length;i++) {
-    println(images_dir+"/"+image_names[i]);
     String extension = image_names[i].substring(image_names[i].length()-4, image_names[i].length());
     if (extension.equals(".jpg")) {
       //create a snippet of json to describe faces in the original image?
